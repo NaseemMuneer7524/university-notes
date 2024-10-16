@@ -1,62 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UploadOutlined,
+  ContactsOutlined,
+  UserOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
+import Logo from "../Assets/logo/logo.png";
+import { Button, Layout, Menu, theme } from "antd";
+
+const { Header, Sider, Content, Footer } = Layout;
 
 function index({ children }) {
+  const [collapsed, setCollapsed] = useState(true);
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
   return (
     <>
-      <div>
-        <header>
-          <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                Navbar
-              </a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                      Home
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      Link
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">
-                      Disabled
-                    </a>
-                  </li>
-                </ul>
-                <form class="d-flex" role="search">
-                  <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <button class="btn btn-outline-success" type="submit">
-                    Search
-                  </button>
-                </form>
-              </div>
-            </div>
-          </nav>
-        </header>
-        {children}
-        <h5>hi</h5>
-      </div>
+      <Layout>
+        <Sider trigger={null} collapsed={collapsed}>
+          {/* Logo here  */}
+          <div className="demo-logo-vertical" />
+          <div className="mt-3 mb-3 m-auto">
+            <img src={Logo} alt="Logo" width={70} />
+          </div>
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={["1"]}
+            items={[
+              {
+                key: "1",
+                icon: <UserOutlined />,
+                label: "Home",
+              },
+              {
+                key: "2",
+                icon: <ContactsOutlined />,
+                label: "About Us",
+              },
+              {
+                key: "3",
+                icon: <UploadOutlined />,
+                label: "Contact Us",
+              },
+              {
+                key: "4",
+                icon: <UploadOutlined />,
+                label: "Services",
+              },
+              {
+                key: "5",
+                icon: <UploadOutlined />,
+                label: "NTS papers",
+              },
+              {
+                key: "6",
+                icon: <UploadOutlined />,
+                label: "HEC papers",
+              },
+              {
+                key: "7",
+                icon: <LogoutOutlined />,
+                label: "Logout",
+              },
+            ]}
+          />
+        </Sider>
+        <Layout>
+          <Header
+            style={{
+              padding: 0,
+              background: colorBgContainer,
+            }}
+          >
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 64,
+              }}
+            />
+          </Header>
+          {children}
+        </Layout>
+      </Layout>
     </>
   );
 }
