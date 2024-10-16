@@ -1,0 +1,1 @@
+export INVALID_NAME = "invalid name"
