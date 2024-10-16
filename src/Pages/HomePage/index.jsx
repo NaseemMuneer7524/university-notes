@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import Layout from "../../Layouts/index";
-
-
-
+import Layouts from "../../Layouts/index";
+import { Layout, Menu, theme } from "antd";
+const { Header, Content, Footer, Sider } = Layout;
 
 function index() {
-  
   return (
     <>
-      <Layout>
-        <h1>Hello</h1>
-      </Layout>
+      <Layouts>
+        <Content>Balochistan</Content>
+      </Layouts>
     </>
   );
 }

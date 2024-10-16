@@ -1,93 +1,88 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
+  AppstoreOutlined,
+  BarChartOutlined,
+  CloudOutlined,
+  ShopOutlined,
+  TeamOutlined,
   UploadOutlined,
-  ContactsOutlined,
   UserOutlined,
-  LogoutOutlined,
+  VideoCameraOutlined,
 } from "@ant-design/icons";
-import Logo from "../Assets/logo/logo.png";
-import { Button, Layout, Menu, theme } from "antd";
-
-const { Header, Sider, Content, Footer } = Layout;
+import Logo from '../Assets/logo/logo.png';
+import { Layout, Menu, theme } from "antd";
+const { Header, Content, Footer, Sider } = Layout;
+const siderStyle = {
+  overflow: "auto",
+  height: "100vh",
+  position: "fixed",
+  insetInlineStart: 0,
+  top: 0,
+  bottom: 0,
+  scrollbarWidth: "thin",
+  scrollbarColor: "unset",
+};
+const items = [
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+  BarChartOutlined,
+  CloudOutlined,
+  AppstoreOutlined,
+  TeamOutlined,
+  ShopOutlined,
+].map((icon, index) => ({
+  key: String(index + 1),
+  icon: React.createElement(icon),
+  label: `nav ${index + 1}`,
+}));
 
 function index({ children }) {
-  const [collapsed, setCollapsed] = useState(true);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
   return (
     <>
-      <Layout>
-        <Sider trigger={null} collapsed={collapsed}>
-          {/* Logo here  */}
+      <Layout hasSider>
+        <Sider style={siderStyle}>
           <div className="demo-logo-vertical" />
-          <div className="mt-3 mb-3 m-auto">
-            <img src={Logo} alt="Logo" width={70} />
+          <div className="mt-3 mb-3 ">
+            <img src={Logo} alt="" width={130}/>
           </div>
           <Menu
             theme="dark"
             mode="inline"
             defaultSelectedKeys={["1"]}
-            items={[
-              {
-                key: "1",
-                icon: <UserOutlined />,
-                label: "Home",
-              },
-              {
-                key: "2",
-                icon: <ContactsOutlined />,
-                label: "About Us",
-              },
-              {
-                key: "3",
-                icon: <UploadOutlined />,
-                label: "Contact Us",
-              },
-              {
-                key: "4",
-                icon: <UploadOutlined />,
-                label: "Services",
-              },
-              {
-                key: "5",
-                icon: <UploadOutlined />,
-                label: "NTS papers",
-              },
-              {
-                key: "6",
-                icon: <UploadOutlined />,
-                label: "HEC papers",
-              },
-              {
-                key: "7",
-                icon: <LogoutOutlined />,
-                label: "Logout",
-              },
-            ]}
+            items={items}
           />
         </Sider>
-        <Layout>
+        <Layout
+          style={{
+            marginInlineStart: 200,
+          }}
+        >
           <Header
             style={{
               padding: 0,
               background: colorBgContainer,
             }}
-          >
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
-              }}
-            />
-          </Header>
+          />
+
+
+
+          {/* Content Here  */}
           {children}
+
+
+          {/* Footer Start here  */}
+          <Footer
+            style={{
+              textAlign: "center",
+            }}
+          >
+            ALL RIGHTS RESERVED ©{new Date().getFullYear()} <b>NASEEM MUNEER</b>
+          </Footer>
         </Layout>
       </Layout>
     </>
