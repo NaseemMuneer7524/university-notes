@@ -39,6 +39,11 @@ const items = [
     icon: <UploadOutlined />,
     label: <Link to="/register">Register</Link>,
   },
+  {
+    key: "4",
+    icon: <UploadOutlined />,
+    label: <Link to="/pastpapers">Past Papers</Link>,
+  },
 ];
 
 function index({ children }) {

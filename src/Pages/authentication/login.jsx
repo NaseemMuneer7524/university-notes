@@ -14,9 +14,8 @@ function login() {
   return (
     <>
       <Layouts>
-        <Content  style={{ padding: "50px" }}>
+        <Content style={{ padding: "50px" }}>
           <h4>Login</h4>
-
           <Form
             name="basic"
             labelCol={{
